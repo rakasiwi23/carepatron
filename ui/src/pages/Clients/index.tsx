@@ -1,9 +1,8 @@
-import { memo, useContext, useEffect } from 'react';
 import { Paper, Typography } from '@mui/material';
-import { StateContext } from '../../store/DataProvider';
+import { memo } from 'react';
 import Page from '../../components/Page';
-import ClientTable from './ClientTable';
 import { getClients } from '../../services/api';
+import ClientTable from './ClientTable';
 
 import { useQuery } from '@tanstack/react-query';
 
