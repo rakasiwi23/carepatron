@@ -24,6 +24,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "e2e": "cypress run",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +50,8 @@
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.0.3",
+    "@testing-library/cypress": "^10.0.1",
+    "cypress": "^13.3.2",
     "prettier-plugin-organize-imports": "^3.2.3"
   }
 }
