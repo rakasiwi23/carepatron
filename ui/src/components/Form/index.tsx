@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { UseMutateFunction } from '@tanstack/react-query';
 import { FormEvent } from 'react';
+import { useIntl } from 'react-intl';
 import { Transition } from '../../components/Transition';
 import { StyledButton } from '../Button';
 
@@ -20,6 +21,8 @@ interface Props {
 	handleCreate: UseMutateFunction<void, Error, Client, unknown>;
 }
 export const Form = ({ open, handleClose, handleCreate }: Props) => {
+	const intl = useIntl();
+
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 
@@ -44,9 +47,23 @@ export const Form = ({ open, handleClose, handleCreate }: Props) => {
 	};
 
 	return (
-		<Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
-			<DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-				Create new client <CloseIcon onClick={handleClose} sx={{ opacity: 0.5, cursor: 'pointer' }} />
+		<Dialog
+			open={open}
+			onClose={handleClose}
+			TransitionComponent={Transition}
+		>
+			<DialogTitle
+				sx={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'space-between',
+				}}
+			>
+				{intl.formatMessage({ id: 'app.form_title' })}{' '}
+				<CloseIcon
+					onClick={handleClose}
+					sx={{ opacity: 0.5, cursor: 'pointer' }}
+				/>
 			</DialogTitle>
 			<Divider sx={{ marginBottom: 4 }} />
 
@@ -55,12 +72,16 @@ export const Form = ({ open, handleClose, handleCreate }: Props) => {
 					<Stack direction='row' alignItems='center' mb={3} pl={1}>
 						<Badge badgeContent={1} color='primary' />
 						<Typography ml={2} fontWeight={700} variant='body2'>
-							Personal details
+							{intl.formatMessage({
+								id: 'app.form_personal_details',
+							})}
 						</Typography>
 					</Stack>
 					<TextField
 						id='first-name'
-						label='First name'
+						label={intl.formatMessage({
+							id: 'app.form_first_name',
+						})}
 						type='text'
 						fullWidth
 						InputLabelProps={{
@@ -71,7 +92,7 @@ export const Form = ({ open, handleClose, handleCreate }: Props) => {
 					/>
 					<TextField
 						id='last-name'
-						label='Last name'
+						label={intl.formatMessage({ id: 'app.form_last_name' })}
 						type='text'
 						fullWidth
 						InputLabelProps={{
@@ -80,15 +101,23 @@ export const Form = ({ open, handleClose, handleCreate }: Props) => {
 						required
 					/>
 
-					<Stack direction='row' alignItems='center' mt={4} mb={3} pl={1}>
+					<Stack
+						direction='row'
+						alignItems='center'
+						mt={4}
+						mb={3}
+						pl={1}
+					>
 						<Badge badgeContent={2} color='primary' />
 						<Typography ml={2} fontWeight={700} variant='body2'>
-							Contact details
+							{intl.formatMessage({
+								id: 'app.form_contact_details',
+							})}
 						</Typography>
 					</Stack>
 					<TextField
 						id='email'
-						label='Email'
+						label={intl.formatMessage({ id: 'app.form_email' })}
 						type='email'
 						fullWidth
 						InputLabelProps={{
@@ -99,7 +128,9 @@ export const Form = ({ open, handleClose, handleCreate }: Props) => {
 					/>
 					<TextField
 						id='phone-number'
-						label='Phone number'
+						label={intl.formatMessage({
+							id: 'app.form_phone_number',
+						})}
 						type='tel'
 						fullWidth
 						InputLabelProps={{
@@ -111,7 +142,7 @@ export const Form = ({ open, handleClose, handleCreate }: Props) => {
 
 				<DialogActions sx={{ padding: '0 24px 24px 24px' }}>
 					<StyledButton type='submit' variant='contained'>
-						Create Client
+						{intl.formatMessage({ id: 'app.form_create_client' })}
 					</StyledButton>
 				</DialogActions>
 			</Box>

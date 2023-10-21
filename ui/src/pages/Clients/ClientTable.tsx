@@ -8,6 +8,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import ClientRow from './ClientRow';
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 	clients: Client[];
 }
 export default function BasicTable({ query, clients }: Props) {
+	const intl = useIntl();
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -26,43 +28,62 @@ export default function BasicTable({ query, clients }: Props) {
 	}, [query]);
 
 	// Avoid a layout jump when reaching the last page with empty rows.
-	const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - clients.length) : 0;
+	const emptyRows =
+		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - clients.length) : 0;
 
-	const handleChangePage = (_event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+	const handleChangePage = (
+		_event: MouseEvent<HTMLButtonElement> | null,
+		newPage: number
+	) => {
 		setPage(newPage);
 	};
 
-	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const handleChangeRowsPerPage = (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
 
 	return (
 		<>
-			<TableContainer component={Paper} elevation={0} sx={{ maxWidth: '100%' }}>
+			<TableContainer
+				component={Paper}
+				elevation={0}
+				sx={{ maxWidth: '100%' }}
+			>
 				<Table sx={{ minWidth: 400 }} aria-label='simple table'>
 					<TableHead>
 						<TableRow>
 							<TableCell>
 								<Typography fontSize={14} fontWeight={700}>
-									Name
+									{intl.formatMessage({
+										id: 'app.name_column_header',
+									})}
 								</Typography>
 							</TableCell>
 							<TableCell>
 								<Typography fontSize={14} fontWeight={700}>
-									Phone
+									{intl.formatMessage({
+										id: 'app.phone_column_header',
+									})}
 								</Typography>
 							</TableCell>
 							<TableCell>
 								<Typography fontSize={14} fontWeight={700}>
-									Email
+									{intl.formatMessage({
+										id: 'app.email_column_header',
+									})}
 								</Typography>
 							</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{(rowsPerPage > 0
-							? clients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							? clients.slice(
+									page * rowsPerPage,
+									page * rowsPerPage + rowsPerPage
+							  )
 							: clients
 						).map((client) => (
 							<ClientRow key={client.id} client={client} />

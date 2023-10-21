@@ -7,14 +7,17 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ChangeEvent, memo, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { StyledButton } from '../../components/Button';
 import { Form } from '../../components/Form';
 import Page from '../../components/Page';
 import { Toast } from '../../components/Toast';
+import { LangSwitcher } from '../../i18n/LangSwitcher';
 import { createClient, getClients } from '../../services/api';
 import ClientTable from './ClientTable';
 
 function Clients() {
+	const intl = useIntl();
 	const [query, setQuery] = useState('');
 	const [openForm, setOpenForm] = useState(false);
 	const [openToast, setOpenToast] = useState(false);
@@ -69,13 +72,26 @@ function Clients() {
 
 	return (
 		<Page>
-			<Typography variant='h4' fontWeight={700} sx={{ textAlign: 'start', marginBottom: 2 }}>
-				Clients
-			</Typography>
+			<Stack
+				direction='row'
+				alignItems='center'
+				justifyContent='space-between'
+				mb={2}
+			>
+				<Typography
+					variant='h4'
+					fontWeight={700}
+					sx={{ textAlign: 'start' }}
+				>
+					{intl.formatMessage({ id: 'app.title' })}
+				</Typography>
+
+				<LangSwitcher />
+			</Stack>
 
 			<Stack direction='row' justifyContent='space-between'>
 				<TextField
-					placeholder='Search clients...'
+					placeholder={intl.formatMessage({ id: 'app.search' })}
 					value={query}
 					type='text'
 					size='small'
@@ -91,15 +107,23 @@ function Clients() {
 				/>
 
 				<StyledButton variant='contained' onClick={handleOpenForm}>
-					Create
+					{intl.formatMessage({ id: 'app.create' })}
 				</StyledButton>
 			</Stack>
 
 			<Paper sx={{ margin: 'auto', marginTop: 3 }}>
-				{isPending ? <Box>Loading...</Box> : <ClientTable query={query} clients={clients} />}
+				{isPending ? (
+					<Box>Loading...</Box>
+				) : (
+					<ClientTable query={query} clients={clients} />
+				)}
 			</Paper>
 
-			<Form open={openForm} handleClose={handleCloseForm} handleCreate={create} />
+			<Form
+				open={openForm}
+				handleClose={handleCloseForm}
+				handleCreate={create}
+			/>
 
 			<Toast open={openToast} handleCloseToast={handleCloseToast} />
 		</Page>

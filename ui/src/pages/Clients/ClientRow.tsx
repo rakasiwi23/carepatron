@@ -17,7 +17,11 @@ export default function ClientListItem({ client }: Props) {
 				},
 			}}
 		>
-			<TableCell component='th' scope='row' sx={{ color: '#345FFF', fontWeight: 700 }}>
+			<TableCell
+				component='th'
+				scope='row'
+				sx={{ color: '#345FFF', fontWeight: 700 }}
+			>
 				{firstName} {lastName}
 			</TableCell>
 			<TableCell>{phoneNumber}</TableCell>

@@ -10,7 +10,11 @@ export function apiDelete<T>(uri: string): Promise<T> {
 	return api<T>(uri, 'delete');
 }
 
-export function apiPost<T>(uri: string, data: any, onUploadProgress?: (progressEvent: any) => void): Promise<T> {
+export function apiPost<T>(
+	uri: string,
+	data: any,
+	onUploadProgress?: (progressEvent: any) => void
+): Promise<T> {
 	return api<T>(uri, 'post', data, onUploadProgress);
 }
 

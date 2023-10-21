@@ -1,0 +1,17 @@
+{
+  "app.language": "Language",
+  "app.title": "Clients",
+  "app.search": "Search clients",
+  "app.create": "Create",
+  "app.name_column_header": "Name",
+  "app.phone_column_header": "Phone",
+  "app.email_column_header": "Email",
+  "app.form_title": "Create new client",
+  "app.form_personal_details": "Personal details",
+  "app.form_first_name": "First name",
+  "app.form_last_name": "Last name",
+  "app.form_contact_details": "Contact details",
+  "app.form_email": "Email",
+  "app.form_phone_number": "Phone number",
+  "app.form_create_client": "Create Client"
+}

@@ -16,7 +16,9 @@ context('given user open the page', () => {
 		it('then form will shown up and user able to create a new client', () => {
 			cy.visit('/');
 
-			cy.findAllByRole('row').should('have.length', 2).should('not.contain', 'Andhika');
+			cy.findAllByRole('row')
+				.should('have.length', 2)
+				.should('not.contain', 'Andhika');
 
 			cy.findByText('Create').click();
 
@@ -26,7 +28,10 @@ context('given user open the page', () => {
 			cy.get('#phone-number').type('+628993658828');
 			cy.findByText('Create Client').click();
 
-			cy.findAllByRole('row').should('have.length', 3).should('contain', 'Andhika').should('contain', 'John');
+			cy.findAllByRole('row')
+				.should('have.length', 3)
+				.should('contain', 'Andhika')
+				.should('contain', 'John');
 		});
 	});
 
@@ -34,15 +39,22 @@ context('given user open the page', () => {
 		it('then user should find that client', () => {
 			cy.visit('/');
 
-			cy.findAllByRole('row').should('have.length', 3).should('contain', 'Andhika');
+			cy.findAllByRole('row')
+				.should('have.length', 3)
+				.should('contain', 'Andhika');
 
 			cy.findByPlaceholderText('Search clients...').type('Andhika');
 
-			cy.findAllByRole('row').should('have.length', 2).should('contain', 'Andhika');
+			cy.findAllByRole('row')
+				.should('have.length', 2)
+				.should('contain', 'Andhika');
 
 			cy.findByPlaceholderText('Search clients...').clear();
 
-			cy.findAllByRole('row').should('have.length', 3).should('contain', 'Andhika').should('contain', 'John');
+			cy.findAllByRole('row')
+				.should('have.length', 3)
+				.should('contain', 'Andhika')
+				.should('contain', 'John');
 		});
 	});
 });

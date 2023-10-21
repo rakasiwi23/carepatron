@@ -1,0 +1,17 @@
+{
+  "app.language": "Bahasa",
+  "app.title": "Klien",
+  "app.search": "Cari Klien",
+  "app.create": "Buat",
+  "app.name_column_header": "Nama",
+  "app.phone_column_header": "Telepon",
+  "app.email_column_header": "Email",
+  "app.form_title": "Buat klien baru",
+  "app.form_personal_details": "Detail pribadi",
+  "app.form_first_name": "Nama depan",
+  "app.form_last_name": "Nama keluarga",
+  "app.form_contact_details": "Rincian kontak",
+  "app.form_email": "Email",
+  "app.form_phone_number": "Nomor Telepon",
+  "app.form_create_client": "Buat Client"
+}
