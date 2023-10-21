@@ -1,5 +1,8 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-export default function Page({ children }: { children?: React.ReactNode }) {
+interface Props {
+	children: ReactNode;
+}
+export default function Page({ children }: Props) {
 	return <div style={{ margin: 'auto', marginTop: 24, maxWidth: '700px' }}>{children}</div>;
 }

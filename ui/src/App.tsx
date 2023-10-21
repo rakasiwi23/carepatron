@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import Clients from './pages/Clients';
 
 const queryClient = new QueryClient({
